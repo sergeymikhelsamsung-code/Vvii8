@@ -26,14 +26,24 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Unpack app source from uploaded ZIP
+      - name: Unpack app source and use JSON Capacitor config
         run: |
           unzip -o Chugunny_Lord_Offline_Project.zip -d /tmp/chugunny-source
           cp -a /tmp/chugunny-source/chugunny-lord-offline/. .
+          rm -f capacitor.config.ts capacitor.config.js capacitor.config.mjs
+          cat > capacitor.config.json <<'JSON'
+          {
+            "appId": "com.chugunlord.app",
+            "appName": "Чугунный Лорд",
+            "webDir": "dist",
+            "android": {
+              "allowMixedContent": false
+            }
+          }
+          JSON
+
       - name: Install dependencies
-        run: |
-          npm install
-          npm install --save-dev typescript
+        run: npm install
 
       - name: Build web app
         run: npm run build
