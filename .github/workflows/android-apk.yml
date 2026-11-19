@@ -30,9 +30,10 @@ jobs:
         run: |
           unzip -o Chugunny_Lord_Offline_Project.zip -d /tmp/chugunny-source
           cp -a /tmp/chugunny-source/chugunny-lord-offline/. .
-
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm install
+          npm install --save-dev typescript
 
       - name: Build web app
         run: npm run build
