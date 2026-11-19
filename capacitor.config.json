@@ -1,0 +1,8 @@
+{
+  "appId": "com.chugunlord.app",
+  "appName": "Чугунный Лорд",
+  "webDir": "dist",
+  "android": {
+    "allowMixedContent": false
+  }
+}
